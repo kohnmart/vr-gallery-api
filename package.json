@@ -1,0 +1,19 @@
+{
+  "name": "image_server",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "exchange server for vr-galleries",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "Martin Kohnle",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0"
+  }
+}
