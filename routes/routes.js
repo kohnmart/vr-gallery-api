@@ -19,9 +19,9 @@ router.get("/:id", async (req, res) => {
 });
 
 // get all Galleries owned by a User 
-router.get("/galleries/:id", async (req, res) => {
+router.get("/galleries", async (req, res) => {
   try {
-    const responseDb = await getUserGalleries(req.params.id);
+    const responseDb = await getUserGalleries(req.body.user_id);
     res.status(responseDb.status).json(responseDb.result);
   } catch (err) {
     console.log(err.message);
