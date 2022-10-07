@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "type": "module",
   "description": "exchange server for vr-galleries",
-  "main": "index.js",
+  "main": "./express/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon ./express/index.js"
   },
   "author": "Martin Kohnle",
   "license": "MIT",
