@@ -14,7 +14,7 @@
     WHERE
         "user".u_id = gallery.u_id;
 
-    /* API Select */
+    /* Query with example u_id */
     SELECT
         g_name,
         g_date,
