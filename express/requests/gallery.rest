@@ -2,3 +2,15 @@
 ###
 
 GET http://localhost:5000/api/galleries/68866309-361c-445b-a7d6-0093bbea0c14
+
+###
+
+POST http://localhost:5000/api/galleries/
+Content-Type: application/json
+
+{
+    "id": "68866309-361c-445b-a7d6-0093bbea0c14",
+    "name": "Mars2020",
+    "active": "true",
+    "path": "mk/user/something/post"
+}
