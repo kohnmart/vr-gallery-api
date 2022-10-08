@@ -31,7 +31,8 @@ CREATE TABLE gallery (
         PRIMARY KEY (g_id),
     
     CONSTRAINT fk_u
-        FOREIGN KEY (u_id) REFERENCES user(u_id),
+        FOREIGN KEY (u_id) REFERENCES user(u_id)
+        ON DELETE CASCADE,
 
     CONSTRAINT unique_id
         UNIQUE (g_id);
@@ -57,7 +58,8 @@ CREATE TABLE image (
         PRIMARY KEY (m_id),
 
     CONSTRAINT fk_g 
-        FOREIGN KEY (g_id) REFERENCES gallery(g_id);
+        FOREIGN KEY (g_id) REFERENCES gallery(g_id)
+        ON DELETE CASCADE;
 );
 
 INSERT INTO image (g_id, i_name)
