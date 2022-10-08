@@ -1,16 +1,41 @@
 
-###
+### GET ALL ACTIVE GALLERIES
+
+GET http://localhost:5000/api/galleries
+
+### GET ALL USER GALLERIES
 
 GET http://localhost:5000/api/galleries/68866309-361c-445b-a7d6-0093bbea0c14
 
-###
+### POST NEW GALLERY
 
-POST http://localhost:5000/api/galleries/
+POST http://localhost:5000/api/galleries
 Content-Type: application/json
 
 {
     "id": "68866309-361c-445b-a7d6-0093bbea0c14",
-    "name": "Mars2020",
+    "name": "Tiergarten",
     "active": "true",
     "path": "mk/user/something/post"
 }
+
+### UPDATE G_ACTIVE GALLERY
+
+PATCH  http://localhost:5000/api/galleries
+Content-Type: application/json
+
+{
+    "ids": [
+        "19e7a1d1-10d5-40a5-b529-2bb74846736c", 
+        "68866309-361c-445b-a7d6-0093bbea0c14",
+    ],
+
+    "set": "true"
+}
+
+### DELETE USER GALLERY
+
+@var_g_id = 19e7a1d1-10d5-40a5-b529-2bb74846736c
+@var_u_id = 68866309-361c-445b-a7d6-0093bbea0c14
+
+DELETE http://localhost:5000/api/galleries/?g_id={{var_g_id}}&u_id={{var_u_id}}
