@@ -9,6 +9,7 @@ const actionDatabase = async (obj) => {
   const idName = obj.idName;
   const idValue = obj.idValue;
   const set = obj.set;
+  const returningId = obj.returningId;
 
   let queryString;
 
@@ -25,9 +26,9 @@ const actionDatabase = async (obj) => {
       break;
 
     case "insert":
-      queryString = `INSERT INTO ${table}(${columns}) VALUES(${quoteValues(
+      queryString = `INSERT INTO "${table}" (${columns}) VALUES(${quoteValues(
         set
-      )})`;
+      )}) RETURNING "${returningId}"`;
 
       break;
 
