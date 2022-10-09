@@ -1,4 +1,6 @@
 import express from "express";
+import fs from "fs";
+import path from "path";
 import actionDatabase from "../../postgres-db/request.js";
 const galleries = express.Router();
 galleries.use(express.json());
@@ -43,9 +45,12 @@ galleries.post("/", async (req, res) => {
       method: "insert",
       table: "gallery",
       columns: ["u_id", "g_name", "g_active", "g_path"],
-      set : [post.id, post.name, post.active, post.path],
+      set : [post.u_id, post.name, post.active, post.path],
     });
-    res.status(db.status).json(db.result);
+    const galleryPath = path.join("store", db.result[0]["u_id"], post.name);
+    fs.mkdir(galleryPath), () => {
+      res.status(db.status).json(db.result);
+    };
   } catch (err) {
     console.log(err.message);
   }
