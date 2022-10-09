@@ -31,9 +31,11 @@ user.post("/", async (req, res) => {
       set: [req.body.name],
       returningId: "u_id",
     });
-    fs.mkdir(`./store/${db.result[0]["u_id"]}`, () => {
-      res.status(db.status).json(db.result);
+    const userPath = path.join(db.result[0]["u_id"], "galleries"); 
+    fs.mkdir(userPath, () => {
+      res.status(db.status).json(db.result)
     });
+    
   } catch (err) {
     console.log(err.message);
   }
