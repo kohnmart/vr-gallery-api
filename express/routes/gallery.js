@@ -83,5 +83,4 @@ galleries.delete("/", async (req, res) => {
   }
 })
 
-export { galleries };
 export default galleries;
