@@ -1,3 +1,5 @@
+
+// Method to concatenate multiple statements
 const concatStatement = (ids, val) => {
   let idsConcat = "";
   for (let i = 0; i < ids.length; i++) {
@@ -7,6 +9,7 @@ const concatStatement = (ids, val) => {
   return idsConcat;
 };
 
+// Method to format values for proper pg-qery
 const quoteValues = (input) => {
   const output = [];
   input.forEach((el) => {
