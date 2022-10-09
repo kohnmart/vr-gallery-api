@@ -1,8 +1,9 @@
 import express from "express";
+import fs from "fs";
+import path from "path";
 import actionDatabase from "../../postgres-db/request.js";
 const user = express.Router();
 user.use(express.json());
-
 
 // get User Information
 user.get("/:id", async (req, res) => {
@@ -28,12 +29,14 @@ user.post("/", async (req, res) => {
       table: "user",
       columns: ["u_name"],
       set: [req.body.name],
-      returningId: "u_id"
+      returningId: "u_id",
     });
-    res.status(db.status).json(db.result);
+    fs.mkdir(`./store/${db.result[0]["u_id"]}`, () => {
+      res.status(db.status).json(db.result);
+    });
   } catch (err) {
     console.log(err.message);
   }
-})
+});
 
 export default user;
