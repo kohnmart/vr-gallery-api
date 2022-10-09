@@ -51,7 +51,7 @@ galleries.post("/", async (req, res) => {
   }
 });
 
-// UPDATE GALLERY COLUMN 
+// UPDATE SPECIFIC GALLERY COLUMN 
 galleries.put("/", async (req, res) => {
   try {
     const db = await actionDatabase({
@@ -68,6 +68,7 @@ galleries.put("/", async (req, res) => {
   }
 });
 
+// DELETE GALLERY CASCADING IMAGES TABLE
 galleries.delete("/", async (req, res) => {
   try {
     const db = await actionDatabase({
