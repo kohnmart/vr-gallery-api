@@ -5,7 +5,7 @@ POST http://localhost:5000/api/user
 Content-Type: application/json
 
 {
-    "name": "TryAgain"
+    "name": "Zuck"
 }
 
 ### PATCH USER
@@ -14,8 +14,8 @@ PATCH http://localhost:5000/api/user
 Content-Type: application/json
 
 {
-    "id": "user_id",
-    "name": "new_user_name"
+    "id": " 68866309-361c-445b-a7d6-0093bbea0c14",
+    "name": "newTesterPerson"
 }
 
 

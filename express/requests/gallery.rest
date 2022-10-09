@@ -14,9 +14,9 @@ Content-Type: application/json
 
 {
     "id": "68866309-361c-445b-a7d6-0093bbea0c14",
-    "name": "Tiergarten",
+    "name": "Blumenstrauß",
     "active": "true",
-    "path": "mk/user/something/post"
+    "path": "68866309-361c-445b-a7d6-0093bbea0c14/galleries/"
 }
 
 ### UPDATE G_ACTIVE GALLERY
