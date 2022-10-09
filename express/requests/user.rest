@@ -1,0 +1,26 @@
+
+### CREATE NEW USER
+
+POST http://localhost:5000/api/user
+Content-Type: application/json
+
+{
+    "name": "TryAgain"
+}
+
+### PATCH USER
+
+PATCH http://localhost:5000/api/user
+Content-Type: application/json
+
+{
+    "id": "user_id",
+    "name": "new_user_name"
+}
+
+
+### DELETE USER
+
+@var_u_id = 68866309-361c-445b-a7d6-0093bbea0c14
+
+GET http://localhost:5000/api/user/?u_id={{var_u_id}}
