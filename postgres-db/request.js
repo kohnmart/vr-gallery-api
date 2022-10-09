@@ -44,7 +44,6 @@ const actionDatabase = async (obj) => {
         idName,
         quoteValues(idValue)
       )}`;
-        console.log(queryString);
       break;
   }
   const result = await query(queryString);
