@@ -1,5 +1,6 @@
 import express from "express";
 import galleries from "./routes/gallery.js";
+import user from "./routes/user.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -7,6 +8,7 @@ dotenv.config();
 const app = express();
 
 app.use("/api/galleries/", galleries);
+app.use("/api/user/", user);
 const port = 5000;
 
 app.listen(port, () => console.log(`Listening to port ${port}`));
