@@ -13,8 +13,8 @@ POST http://localhost:5000/api/galleries
 Content-Type: application/json
 
 {
-    "u_id": "6461259f-3c83-449e-b7de-26e0233e50f3",
-    "g_name": "EineGuteParty",
+    "u_id": "ce7c566f-4a59-4474-84e8-5ffe8a5c3b6c",
+    "g_name": "Venedig",
     "g_active": "true"
 }
 
