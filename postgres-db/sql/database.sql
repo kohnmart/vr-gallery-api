@@ -54,7 +54,7 @@ CREATE TABLE image (
     i_name  VARCHAR(30) NOT NULL,
 
     CONSTRAINT pk_i
-        PRIMARY KEY (m_id),
+        PRIMARY KEY (i_id),
 
     CONSTRAINT fk_g 
         FOREIGN KEY (g_id) REFERENCES gallery(g_id)
