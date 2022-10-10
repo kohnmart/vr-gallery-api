@@ -10,7 +10,7 @@ galleries.get("/", async (req, res) => {
   try {
     const db = await actionDatabase({
       method: "select",
-      select: ["g_name", "g_date", "g_rating", "g_active", "g_path"],
+      select: ["g_name", "g_date", "g_rating", "g_active"],
       table: "getUserGalleries",
       idName: "g_active",
       idValue: "true",
@@ -26,7 +26,7 @@ galleries.get("/:id", async (req, res) => {
   try {
     const db = await actionDatabase({
       method: "select",
-      select: ["g_name", "g_date", "g_rating", "g_active", "g_path"],
+      select: ["g_name", "g_date", "g_rating", "g_active"],
       table: "getUserGalleries",
       idName: "u_id",
       idValue: req.params.id,
@@ -45,10 +45,12 @@ galleries.post("/", async (req, res) => {
       method: "insert",
       table: "gallery",
       columns: ["u_id", "g_name", "g_active", "g_path"],
-      set : [post.u_id, post.name, post.active, post.path],
+      set: [post.u_id, post.g_name, post.g_active, post.g_path],
+      returningId: "g_id"
     });
-    const galleryPath = path.join("store", db.result[0]["u_id"], post.name);
-    fs.mkdir(galleryPath), () => {
+
+    const galleryPath = path.join("store", post.u_id, post.g_name);
+    fs.mkdirSync(galleryPath), () => {
       res.status(db.status).json(db.result);
     };
   } catch (err) {
