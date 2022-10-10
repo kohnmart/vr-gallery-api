@@ -44,21 +44,22 @@ galleries.post("/", async (req, res) => {
     const db = await actionDatabase({
       method: "insert",
       table: "gallery",
-      columns: ["u_id", "g_name", "g_active", "g_path"],
-      set: [post.u_id, post.g_name, post.g_active, post.g_path],
-      returningId: "g_id"
+      columns: ["u_id", "g_name", "g_active"],
+      set: [post.u_id, post.g_name, post.g_active],
+      returningId: "g_id",
     });
 
-    const galleryPath = path.join("store", post.u_id, post.g_name);
-    fs.mkdirSync(galleryPath), () => {
+    fs.mkdirSync(path.join("store", post.u_id, db.result[0]["g_id"])),
+      () => {
+        console.log(`Created dir ${post.u_id}/${db.result["g_id"]}`)
+      };
       res.status(db.status).json(db.result);
-    };
   } catch (err) {
     console.log(err.message);
   }
 });
 
-// UPDATE SPECIFIC GALLERY COLUMN 
+// UPDATE SPECIFIC GALLERY COLUMN
 galleries.put("/", async (req, res) => {
   try {
     const db = await actionDatabase({
@@ -66,8 +67,8 @@ galleries.put("/", async (req, res) => {
       table: "gallery",
       columns: "g_active",
       idName: ["g_id", "u_id"],
-      idValue:  req.body.ids,
-      set: req.body.set
+      idValue: req.body.ids,
+      set: req.body.set,
     });
     res.status(db.status).json(db.result);
   } catch (err) {
@@ -82,12 +83,12 @@ galleries.delete("/", async (req, res) => {
       method: "delete",
       table: "gallery",
       idName: ["g_id", "u_id"],
-      idValue: [req.query.g_id, req.query.u_id]
+      idValue: [req.query.g_id, req.query.u_id],
     });
     res.status(db.status).json(db.result);
   } catch (err) {
     console.log(err.message);
   }
-})
+});
 
 export default galleries;
