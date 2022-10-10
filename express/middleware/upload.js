@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
   }
 });
 
-// Create multer instance middlware
+// Create multer instance middleware
 const upload = multer({ dest: "store/" }).single("image");
 
 export default upload;
