@@ -1,6 +1,4 @@
 import express from "express";
-import fs from "fs";
-import path from "path";
 import actionDatabase from "../../postgres-db/request.js";
 const galleries = express.Router();
 galleries.use(express.json());
@@ -48,12 +46,7 @@ galleries.post("/", async (req, res) => {
       set: [post.u_id, post.g_name, post.g_active],
       returningId: "g_id",
     });
-
-    fs.mkdirSync(path.join("store", post.u_id, db.result[0]["g_id"])),
-      () => {
-        console.log(`Created dir ${post.u_id}/${db.result["g_id"]}`)
-      };
-      res.status(db.status).json(db.result);
+    res.status(db.status).json(db.result);
   } catch (err) {
     console.log(err.message);
   }
