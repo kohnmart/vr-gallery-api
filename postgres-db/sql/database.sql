@@ -25,7 +25,6 @@ CREATE TABLE gallery (
     g_date      DATE        DEFAULT CURRENT_TIMESTAMP,
     g_rating    INTEGER     DEFAULT 0,
     g_active    BOOLEAN NOT NULL DEFAULT true,
-    g_path      VARCHAR(100) NOT NULL,
 
     CONSTRAINT pk_g
         PRIMARY KEY (g_id),
@@ -40,11 +39,11 @@ CREATE TABLE gallery (
 );
 
 INSERT INTO gallery(
-	u_id, g_name, g_active, g_path)
-	VALUES  ('68866309-361c-445b-a7d6-0093bbea0c14', 'Stadtfotografie', true , './user/galleries/pictures/');
-            ('68866309-361c-445b-a7d6-0093bbea0c14', 'Sardinien', true , './user/galleries/pictures/'),
-            ('5700ce15-af9b-44c2-aa84-3583151cdf95', 'Weltreise', false , './user/galleries/pictures/'),
-            ('1584b9b1-85bc-4a52-a8e7-83db6ebda8bb', 'Frankreich Roadtrip', true , './user/galleries/pictures/');
+	u_id, g_name, g_active)
+	VALUES  ('68866309-361c-445b-a7d6-0093bbea0c14', 'Stadtfotografie', true);
+            ('68866309-361c-445b-a7d6-0093bbea0c14', 'Sardinien', true),
+            ('5700ce15-af9b-44c2-aa84-3583151cdf95', 'Weltreise', false),
+            ('1584b9b1-85bc-4a52-a8e7-83db6ebda8bb', 'Frankreich Roadtrip', true);
 
 
 
