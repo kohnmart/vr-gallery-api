@@ -14,9 +14,8 @@ Content-Type: application/json
 
 {
     "u_id": "6461259f-3c83-449e-b7de-26e0233e50f3",
-    "name": "EineGuteParty",
-    "active": "true",
-    "path": "68866309-361c-445b-a7d6-0093bbea0c14/galleries/"
+    "g_name": "EineGuteParty",
+    "g_active": "true"
 }
 
 ### UPDATE G_ACTIVE GALLERY
