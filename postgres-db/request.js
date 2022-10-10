@@ -47,6 +47,7 @@ const actionDatabase = async (obj) => {
       )}`;
       break;
   }
+  console.log(queryString);
   const result = await query(queryString);
 
   return { status: 200, result: result.rows };
