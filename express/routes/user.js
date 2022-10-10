@@ -1,6 +1,4 @@
 import express from "express";
-import fs from "fs";
-import path from "path";
 import actionDatabase from "../../postgres-db/request.js";
 const user = express.Router();
 user.use(express.json());
@@ -31,12 +29,7 @@ user.post("/", async (req, res) => {
       set: [req.body.name],
       returningId: "u_id",
     });
- 
-    fs.mkdirSync(path.join("store", db.result[0]["u_id"]), () => {
-      console.log(`Created dir store/${db.result["g_id"]}`)
-    });
     res.status(db.status).json(db.result)
-    
   } catch (err) {
     console.log(err.message);
   }
