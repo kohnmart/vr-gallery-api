@@ -6,8 +6,7 @@
         gallery.g_name,
         gallery.g_date,
         gallery.g_rating,
-        gallery.g_active,
-        gallery.g_path
+        gallery.g_active
     FROM
         gallery
         JOIN "user" ON "user".u_id = gallery.u_id
