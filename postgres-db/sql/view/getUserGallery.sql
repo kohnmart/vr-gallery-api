@@ -21,7 +21,7 @@
         g_active,
         g_path
     FROM
-        public."getUserGalleries"
+        "getUserGalleries"
     WHERE
         u_id = '68866309-361c-445b-a7d6-0093bbea0c14';
 
