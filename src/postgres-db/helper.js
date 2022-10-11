@@ -9,7 +9,7 @@ const concatStatement = (ids, val) => {
   return idsConcat;
 };
 
-// Method to format values for proper pg-qery
+// Method to quote values for pg-query
 const quoteValues = (input) => {
   const output = [];
   input.forEach((el) => {
