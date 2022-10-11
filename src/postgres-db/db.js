@@ -1,11 +1,11 @@
 import pg from "pg";
 
 const pool = new pg.Pool({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
+  PGUSER: process.env.PGUSER,
+  PGPASSWORD: process.env.PGPASSWORD,
+  PGDATABASE: process.env.PGDATABASE,
+  PGHOST: process.env.DB_HOST,
+  PGPORT: process.env.DB_PORT,
 });
 
 const query = async (pSQL, pParams) => pool.query(pSQL, pParams);
