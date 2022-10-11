@@ -52,16 +52,19 @@ CREATE TABLE image (
     i_id    uuid DEFAULT gen_random_uuid(),
     g_id    uuid NOT NULL,
     i_name  VARCHAR(30) NOT NULL,
-
+    i_frame VARCHAR(10) NOT NULL,
     CONSTRAINT pk_i
         PRIMARY KEY (i_id),
 
     CONSTRAINT fk_g 
         FOREIGN KEY (g_id) REFERENCES gallery(g_id)
-        ON DELETE CASCADE;
+        ON DELETE CASCADE
+
+    CONSTRAINT unique_frame 
+        UNIQUE(i_frame);
 );
 
-INSERT INTO image (g_id, i_name)
+INSERT INTO image (g_id, i_name, i_frame)
 VALUES  ('19e7a1d1-10d5-40a5-b529-2bb74846736c', 'strand.jpg'),
         ('19e7a1d1-10d5-40a5-b529-2bb74846736c', 'meer.jpg'),
         ('19e7a1d1-10d5-40a5-b529-2bb74846736c', 'hotel.jpg'),
