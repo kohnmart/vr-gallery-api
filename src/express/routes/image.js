@@ -5,10 +5,10 @@ const image = express.Router();
 image.use(express.json());
 
 // GET ALL GALLERY IMAGES FROM A USER
-image.get("/", async (req, res) => {
+image.get("/:id", async (req, res) => {
   const db = await actionDatabase({
     method: "select",
-    select: ["i_id", "i_name", "g_id", "g_name"],
+    select: ["i_id", "i_name"],
     table: "getGalleryImages",
     idName: "g_id",
     idValue: req.params.id,
@@ -21,8 +21,6 @@ image.post("/upload", upload, async (req, res) => {
   const image = req.file;
   const imageId = image.filename.split('.')[0];
   const g_id = req.body.g_id;
-
-  console.log(image);  
   const db = await actionDatabase({
     method: "insert",
     table: "image",
