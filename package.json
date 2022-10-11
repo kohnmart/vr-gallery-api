@@ -5,8 +5,7 @@
   "description": "exchange server for vr-galleries",
   "main": "./express/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./express/index.js"
+    "dev": "nodemon ./src/express/index.js"
   },
   "author": "Martin Kohnle",
   "license": "MIT",
