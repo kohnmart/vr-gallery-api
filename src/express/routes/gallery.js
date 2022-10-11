@@ -3,9 +3,11 @@ import actionDatabase from "../../postgres-db/request.js";
 const galleries = express.Router();
 galleries.use(express.json());
 
-// GET ALL ACTIVE GALLERIES
-galleries.get("/", async (req, res) => {
-  try {
+galleries
+  .route("/")
+
+  // GET ALL ACTIVE GALLERIES
+  .get(async (req, res) => {
     const db = await actionDatabase({
       method: "select",
       select: ["g_name", "g_date", "g_rating", "g_active"],
@@ -14,31 +16,11 @@ galleries.get("/", async (req, res) => {
       idValue: "true",
     });
     res.status(db.status).json(db.result);
-  } catch (err) {
-    console.log(err.message);
-  }
-});
+  })
 
-// GET ALL USER GALLERIES
-galleries.get("/:id", async (req, res) => {
-  try {
-    const db = await actionDatabase({
-      method: "select",
-      select: ["g_name", "g_date", "g_rating", "g_active"],
-      table: "getUserGalleries",
-      idName: "u_id",
-      idValue: req.params.id,
-    });
-    res.status(db.status).json(db.result);
-  } catch (err) {
-    console.log(err.message);
-  }
-});
-
-// CREATE NEW GALLERY
-galleries.post("/", async (req, res) => {
-  const post = req.body;
-  try {
+  // CREATE NEW GALLERY
+  .post(async (req, res) => {
+    const post = req.body;
     const db = await actionDatabase({
       method: "insert",
       table: "gallery",
@@ -47,14 +29,10 @@ galleries.post("/", async (req, res) => {
       returningId: "g_id",
     });
     res.status(db.status).json(db.result);
-  } catch (err) {
-    console.log(err.message);
-  }
-});
+  })
 
-// UPDATE SPECIFIC GALLERY COLUMN
-galleries.put("/", async (req, res) => {
-  try {
+  // UPDATE SPECIFIC GALLERY COLUMN
+  .put(async (req, res) => {
     const db = await actionDatabase({
       method: "update",
       table: "gallery",
@@ -64,14 +42,10 @@ galleries.put("/", async (req, res) => {
       set: req.body.set,
     });
     res.status(db.status).json(db.result);
-  } catch (err) {
-    console.log(err.message);
-  }
-});
+  })
 
-// DELETE GALLERY CASCADING IMAGES TABLE
-galleries.delete("/", async (req, res) => {
-  try {
+  // DELETE GALLERY CASCADING IMAGES TABLE
+  .delete(async (req, res) => {
     const db = await actionDatabase({
       method: "delete",
       table: "gallery",
@@ -79,9 +53,17 @@ galleries.delete("/", async (req, res) => {
       idValue: [req.query.g_id, req.query.u_id],
     });
     res.status(db.status).json(db.result);
-  } catch (err) {
-    console.log(err.message);
-  }
-});
+  });
 
+// GET ALL USER GALLERIES WITH ID
+galleries.get("/:id", async (req, res) => {
+  const db = await actionDatabase({
+    method: "select",
+    select: ["g_name", "g_date", "g_rating", "g_active"],
+    table: "getUserGalleries",
+    idName: "u_id",
+    idValue: req.params.id,
+  });
+  res.status(db.status).json(db.result);
+});
 export default galleries;
