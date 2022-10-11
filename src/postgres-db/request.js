@@ -48,9 +48,17 @@ const actionDatabase = async (obj) => {
       break;
   }
   console.log(queryString);
-  const result = await query(queryString);
-
-  return { status: 200, result: result.rows };
+  //Execute concatenated query
+  const result = query(queryString)
+    .then((result) => {
+      return { status: 200, result: result.rows[0] };
+    })
+    .catch((err) => {
+      console.log(err);
+      return { status: 400, result: err };
+    });
+    
+  return result;
 };
 
 export default actionDatabase;
