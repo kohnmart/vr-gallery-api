@@ -1,0 +1,5 @@
+### GET ALL IMAGES FROM GALLERIE
+
+@var_g_id = fc33da70-835c-4964-8ac1-57a0c8b58864
+
+GET http://localhost:5000/api/image/{{var_g_id}}
