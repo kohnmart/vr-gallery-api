@@ -1,5 +1,4 @@
 import express from "express";
-import fs from "fs";
 import upload from "../middleware/upload.js";
 import actionDatabase from "../../postgres-db/request.js";
 const image = express.Router();
@@ -21,13 +20,6 @@ image.get("/", async (req, res) => {
   }
 });
 
-
-// Download image with key
-image.get("/:key", upload, async (req, res) => {
-  const file = req.file;
-  const id = req.body.id;
-  res.send(id);
-});
 
 // ADD IMAGE TO GALLERY --> Upload to S3 Bucket
 image.post("/upload", upload, async (req, res) => {
