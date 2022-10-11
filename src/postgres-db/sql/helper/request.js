@@ -1,4 +1,4 @@
-import query from "../../db.js";
+import query from "../config/db.js";
 import { concatStatement, quoteValues } from "./helper.js";
 
 const actionDatabase = async (obj) => {
