@@ -5,12 +5,11 @@ import image from "./routes/image.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-
 const app = express();
 
-app.use("/api/galleries/", galleries);
-app.use("/api/user/", user);
+app.use("/api/galleries", galleries);
+app.use("/api/user", user);
 app.use("/api/image", image);
-const port = 5000;
+app.use("/api/store", express.static("./store"));
 
-app.listen(port, () => console.log(`Listening to port ${port}`));
+app.listen(process.env.PORT, () => console.log(`Listening to port ${process.env.PORT}`));
