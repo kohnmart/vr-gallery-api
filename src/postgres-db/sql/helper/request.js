@@ -48,6 +48,7 @@ const actionDatabase = async (obj) => {
       break;
   }
   console.log(queryString);
+  
   //Execute concatenated query
   const result = query(queryString)
     .then((result) => {

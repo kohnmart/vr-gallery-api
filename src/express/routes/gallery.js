@@ -1,5 +1,5 @@
 import express from "express";
-import actionDatabase from "../../postgres-db/request.js";
+import actionDatabase from "../../postgres-db/sql/helper/request.js";
 const galleries = express.Router();
 galleries.use(express.json());
 
