@@ -11,7 +11,7 @@ GET http://localhost:5000/api/galleries/68866309-361c-445b-a7d6-0093bbea0c14
 
 POST http://localhost:5000/api/galleries
 Content-Type: application/json
-
+    
 {
     "u_id": "ce7c566f-4a59-4474-84e8-5ffe8a5c3b6c",
     "g_name": "Venedig",
