@@ -1,15 +1,15 @@
 import multer from "multer";
 import path from "path";
-
+import { v4 as uuidv4 } from "uuid";
 //Storage
 const storage = multer.diskStorage({
-  destination: "./store/",
+  destination: "./store",
   filename: function (req, file, cb) {
-    cb(null, file.filename + path.extname(file.originalname));
+    cb(null, uuidv4() + path.extname(file.originalname));
   }
 });
 
 // Create multer instance middleware
-const upload = multer({ dest: "./store/" }).single("image");
+const upload = multer({ storage: storage }).single("image");
 
 export default upload;
