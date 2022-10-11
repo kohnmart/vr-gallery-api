@@ -51,7 +51,7 @@ const actionDatabase = async (obj) => {
   //Execute concatenated query
   const result = query(queryString)
     .then((result) => {
-      return { status: 200, result: result.rows[0] };
+      return { status: 200, result: result.rows };
     })
     .catch((err) => {
       console.log(err);
