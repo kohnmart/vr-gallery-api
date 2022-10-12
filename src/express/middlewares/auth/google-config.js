@@ -1,3 +1,4 @@
+import actionDatabase from "../../../postgres-db/sql/helper/request.js";
 import passport from "passport";
 import Strategy from "passport-google-oauth20";
 import dotenv from "dotenv";
@@ -11,18 +12,48 @@ passport.use(
       callbackURL: "http://localhost:5000/api/auth/google/callback",
       passReqToCallback: true,
     },
-    function(request, accessToken, refreshToken, profile, done) {
-        return done(null, profile);
+    (request, accessToken, refreshToken, profile, done) => {
+        //Call Database
+        const dbResult = actionDatabase({
+        method: "select",
+        select: ["u_name"],
+        table: "user",
+        idName: "u_cred_id",
+        idValue: profile.id,
       })
-      
+        .then((result) => {
+          console.log(result);
+          // CHECK IF USER FOUND => RETURN 
+          if (result.rows) {
+            console.log("user found");
+            return done(null, profile);
+          } 
+          // USER NOT FOUND => REGISTER
+          else {
+              const registerResult = actionDatabase({
+              method: "insert",
+              table: "user",
+              columns: ["u_cred_id", "u_name"],
+              set: [profile.id, profile.displayName],
+              returningId: "u_id",
+            });
+            return done(null, registerResult);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      return done(null, dbResult);
+    }
+  )
 );
 
-passport.serializeUser(function(user, done) {
-    done(null, user);
-  });
-  
-  passport.deserializeUser(function(user, done) {
-    done(null, user);
-  });
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+  done(null, user);
+});
 
 export default passport;
