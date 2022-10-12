@@ -3,8 +3,8 @@ CREATE DATABASE vr-gallery;
 DROP TABLE IF EXISTS user CASCADE;
 CREATE TABLE user (
     u_id    uuid DEFAULT gen_random_uuid(),
-    u_name  VARCHAR(30) NOT NULL,
-
+    u_name  VARCHAR(100) NOT NULL,
+    u_cred_id VARCHAR(100),
     CONSTRAINT pk_u
         PRIMARY KEY(u_id);
 );
