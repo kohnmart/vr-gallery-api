@@ -28,4 +28,11 @@ auth.get("/failure", (req, res) => {
   res.send("Login failed!");
 });
 
+
+auth.post("/logout", (req, res) => {
+  req.logout();
+  res.send("User logged out");
+  console.log("User logged out!");
+})
+
 export default auth;
