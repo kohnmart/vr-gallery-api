@@ -13,24 +13,23 @@ passport.use(
       passReqToCallback: true,
     },
     (request, accessToken, refreshToken, profile, done) => {
-        //Call Database
-        const dbResult = actionDatabase({
+      //Call Database
+      const dbResult = actionDatabase({
         method: "select",
-        select: ["u_name"],
+        select: ["u_id, u_name"],
         table: "user",
         idName: "u_cred_id",
         idValue: profile.id,
       })
-        .then((result) => {
-          console.log(result);
-          // CHECK IF USER FOUND => RETURN 
-          if (result.rows) {
+        .then((res) => {
+          // CHECK IF USER FOUND => RETURN
+          if (res.result) {
             console.log("user found");
-            return done(null, profile);
-          } 
+            return done(null, dbResult);
+          }
           // USER NOT FOUND => REGISTER
           else {
-              const registerResult = actionDatabase({
+            const registerResult = actionDatabase({
               method: "insert",
               table: "user",
               columns: ["u_cred_id", "u_name"],
@@ -42,6 +41,7 @@ passport.use(
         })
         .catch((err) => {
           console.log(err);
+          return done(null, false);
         });
       return done(null, dbResult);
     }
