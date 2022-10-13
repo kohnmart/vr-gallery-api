@@ -14,7 +14,7 @@ passport.use(
     },
     (request, accessToken, refreshToken, profile, done) => {
       //Call Database
-      const dbResult = actionDatabase({
+       actionDatabase({
         method: "select",
         select: ["u_id, u_name"],
         table: "user",
@@ -25,7 +25,7 @@ passport.use(
           // CHECK IF USER FOUND => RETURN
           if (res.result) {
             console.log("user found");
-            return done(null, dbResult);
+            return done(null, res);
           }
           // USER NOT FOUND => REGISTER
           else {
@@ -43,7 +43,6 @@ passport.use(
           console.log(err);
           return done(null, false);
         });
-      return done(null, dbResult);
     }
   )
 );
