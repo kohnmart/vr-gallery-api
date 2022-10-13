@@ -1,7 +1,7 @@
 // Login Middleware
 
 function checkLogin(req, res, next) {
-  console.log(req.user);
+  console.log("Check Login: " + req.user);
   req.user ? next() : res.sendStatus(401);
 }
 
