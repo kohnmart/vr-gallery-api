@@ -7,6 +7,7 @@ import image from "./routes/image.js";
 import auth from "./routes/auth.js";
 import dotenv from "dotenv";
 import passport from "passport";
+import checkLogin from "./middlewares/auth/login.js";
 dotenv.config();
 
 // Server
@@ -25,12 +26,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//ROUTES
-app.use("/api/galleries", galleries);
-app.use("/api/user", user);
-app.use("/api/image", image);
+
+//OPEN ROUTE FOR AUTH
 app.use("/api/auth", auth);
-app.use("/api/store", express.static("./store"));
+//PROTECTED ROUTES
+app.use("/api/galleries", checkLogin, galleries);
+app.use("/api/user",      checkLogin, user);
+app.use("/api/image",     checkLogin, image);
+app.use("/api/store",     checkLogin, express.static("./store"));
 
 app.listen(process.env.PORT, () =>
   console.log(`Listening to port ${process.env.PORT}`)
