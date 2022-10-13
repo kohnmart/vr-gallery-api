@@ -14,6 +14,7 @@ auth.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/api/auth/failure" }),
   function (req, res) {
+    console.log(req);
     res.redirect("/api/auth/success");
   }
 );
