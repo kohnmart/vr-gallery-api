@@ -1,6 +1,6 @@
 import express from "express";
 import upload from "../middlewares/multer/upload.js";
-import actionDatabase from "../../postgres-db/sql/helper/request.js";
+import actionDatabase from "../../postgres-db/helper/request.js";
 const image = express.Router();
 image.use(express.json());
 
