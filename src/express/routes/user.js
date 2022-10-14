@@ -1,5 +1,5 @@
 import express from "express";
-import actionDatabase from "../../postgres-db/sql/helper/request.js";
+import actionDatabase from "../../postgres-db/helper/request.js";
 const user = express.Router();
 user.use(express.json());
 
