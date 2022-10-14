@@ -1,5 +1,5 @@
 import express from "express";
-import "../middlewares/auth/google-config.js";
+import "../middlewares/auth/google-strategy.js";
 import passport from "passport";
 import checkLogin from "../middlewares/auth/login.js";
 const auth = express.Router();
@@ -28,11 +28,10 @@ auth.get("/failure", (req, res) => {
   res.send("Login failed!");
 });
 
-
 auth.post("/logout", (req, res) => {
   req.logout();
   res.send("User logged out");
   console.log("User logged out!");
-})
+});
 
 export default auth;
