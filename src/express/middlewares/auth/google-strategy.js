@@ -1,4 +1,4 @@
-import actionDatabase from "../../../postgres-db/sql/helper/request.js";
+import actionDatabase from "../../../postgres-db/helper/request.js";
 import passport from "passport";
 import Strategy from "passport-google-oauth20";
 import dotenv from "dotenv";
