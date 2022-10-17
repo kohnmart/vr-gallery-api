@@ -36,7 +36,7 @@ app.use('/api/auth', auth);
 //PROTECTED ROUTES
 app.use('/api/galleries', checkLogin, galleries);
 app.use('/api/user', checkLogin, user);
-app.use('/api/image', checkLogin, image);
+app.use('/api/image', image);
 app.use('/api/store', checkLogin, express.static('./store'));
 
 app.listen(process.env.PORT, () =>
