@@ -17,13 +17,15 @@ const actionDatabase = async (obj) => {
     case 'select':
       queryString = `SELECT ${select} FROM "${table}" `;
 
-      if (idName) {
+      if (idName != '') {
         const constraint = `WHERE ${concatStatement(
           idName,
           quoteValues(idValue)
         )}`;
         queryString += constraint;
       }
+
+      queryString += ' LIMIT 2';
 
       /*  const constraint = `${
         idName ? "WHERE " + idName + "=" + "'" + idValue + "'" : ""
