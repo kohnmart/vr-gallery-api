@@ -34,10 +34,10 @@ app.use(cookieParser());
 //OPEN ROUTE FOR AUTH
 app.use('/api/auth', auth);
 //PROTECTED ROUTES
-app.use('/api/galleries', checkLogin, galleries);
-app.use('/api/user', checkLogin, user);
+app.use('/api/galleries', galleries);
+app.use('/api/user', user);
 app.use('/api/image', image);
-app.use('/api/store', checkLogin, express.static('./store'));
+app.use('/api/store', express.static('./store'));
 
 app.listen(process.env.PORT, () =>
   console.log(`Listening to port ${process.env.PORT}`)
