@@ -38,7 +38,7 @@ image.post(
       .then((selectResult) => {
         if (selectResult.result.length !== 0) {
           console.log(selectResult.status);
-          /* REPLACE IMAGE AND THUMBNAIL IF EXISTS */
+          /* REPLACE => IMAGE AND THUMBNAIL IF EXISTS */
           actionDatabase({
             method: 'update',
             table: 'image',
@@ -48,7 +48,7 @@ image.post(
             idValue: [g_id, 'Frame01'],
           })
             .then((updateResult) => {
-              /* UNLINK EXISTING STORE IMAGES */
+              /* UNLINK => EXISTING STORE IMAGES */
               fs.unlinkSync(`./store/${selectResult.result[0]['i_id']}.jpg`);
               fs.unlinkSync(`./store/${selectResult.result[0]['i_thumb']}.jpg`);
               return res.json(updateResult);
@@ -58,7 +58,7 @@ image.post(
               res.json(err);
             });
         } else {
-          /* INSERT NEW IMAGE AND THUMBNAIL TO GALLERY */
+          /* INSERT => NEW IMAGE AND THUMBNAIL TO GALLERY */
           const insert = actionDatabase({
             method: 'insert',
             table: 'image',
