@@ -31,6 +31,14 @@ app.use(passport.session());
 
 app.use(cookieParser());
 
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+app.use(express.json());
+
 //OPEN ROUTE FOR AUTH
 app.use('/api/auth', auth);
 //PROTECTED ROUTES
