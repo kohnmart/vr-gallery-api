@@ -34,7 +34,10 @@ const actionDatabase = async (obj) => {
 
     case 'update':
       queryString = `UPDATE "${table}" SET (${columns}) = (${quoteValues(set)})
-      WHERE ${concatStatement(idName, quoteValues(idValue))}`;
+      WHERE ${concatStatement(
+        idName,
+        quoteValues(idValue)
+      )} RETURNING "${returningId}"`;
 
       break;
 
