@@ -13,7 +13,7 @@ galleries
       idName: ['g_active'],
       idValue: ['true'],
     });
-    res.status(db.status).json({ Gallery: db.result });
+    res.status(db.status).json({ galleries: db.result });
   })
 
   // CREATE NEW GALLERY
@@ -57,11 +57,11 @@ galleries
 galleries.get('/:id', async (req, res) => {
   const db = await actionDatabase({
     method: 'select',
-    select: ['g_name', 'g_date', 'g_rating', 'g_active'],
+    select: ['g_id', 'g_name', 'g_date'],
     table: 'getUserGalleries',
-    idName: 'u_id',
-    idValue: req.params.id,
+    idName: ['u_id'],
+    idValue: [req.params.id],
   });
-  res.status(db.status).json(db.result);
+  res.status(db.status).json({ galleries: db.result });
 });
 export default galleries;
