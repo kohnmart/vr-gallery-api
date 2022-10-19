@@ -26,18 +26,20 @@ galleries
       set: [post.u_id, post.g_name, post.g_active],
       returningId: 'g_id',
     });
-    res.status(db.status).json(db.result);
+    res.status(db.status).json(db.result[0]);
   })
 
   // UPDATE SPECIFIC GALLERY COLUMN
   .put(async (req, res) => {
+    console.log(req.body);
     const db = await actionDatabase({
       method: 'update',
       table: 'gallery',
       columns: 'g_active',
       idName: ['g_id', 'u_id'],
-      idValue: req.body.ids,
-      set: req.body.set,
+      idValue: [req.body.g_id, req.body.u_id],
+      set: [req.body.set],
+      returningId: 'g_id',
     });
     res.status(db.status).json(db.result);
   })
@@ -47,10 +49,12 @@ galleries
     const db = await actionDatabase({
       method: 'delete',
       table: 'gallery',
-      idName: ['g_id', 'u_id'],
-      idValue: [req.query.g_id, req.query.u_id],
+      idName: ['g_id'],
+      idValue: [req.query.g_id],
     });
-    res.status(db.status).json(db.result);
+    res
+      .status(db.status)
+      .json({ result: 'Gallery has been succesfully deleted!' });
   });
 
 // GET ALL USER GALLERIES WITH ID
