@@ -10,7 +10,6 @@ const actionDatabase = async (obj) => {
   const idValue = obj.idValue;
   const set = obj.set;
   const returningId = obj.returningId;
-
   let queryString;
 
   switch (method) {
@@ -24,15 +23,6 @@ const actionDatabase = async (obj) => {
         )}`;
         queryString += constraint;
       }
-
-      queryString += ' LIMIT 2';
-
-      /*  const constraint = `${
-        idName ? "WHERE " + idName + "=" + "'" + idValue + "'" : ""
-      }`;
-
-      constraint ? (queryString += constraint) : queryString;
-      */
       break;
 
     case 'insert':
