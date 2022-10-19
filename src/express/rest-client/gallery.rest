@@ -37,4 +37,4 @@ Content-Type: application/json
 @var_g_id = 19e7a1d1-10d5-40a5-b529-2bb74846736c
 @var_u_id = 68866309-361c-445b-a7d6-0093bbea0c14
 
-DELETE http://localhost:5000/api/galleries/?g_id={{var_g_id}}&u_id={{var_u_id}}
+DELETE http://localhost:5000/api/galleries/?g_id=1fab03df-ab43-4b04-9452-e3f780ff9862
