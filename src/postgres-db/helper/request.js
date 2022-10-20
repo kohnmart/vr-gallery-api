@@ -2,14 +2,18 @@ import query from '../config/db.js';
 import { concatStatement, quoteValues } from './helper.js';
 
 const actionDatabase = async (obj) => {
-  const method = obj.method;
-  const select = obj.select;
-  const columns = obj.columns;
-  const table = obj.table;
-  const idName = obj.idName;
-  const idValue = obj.idValue;
-  const set = obj.set;
-  const returningId = obj.returningId;
+  //Destructuring and default values
+  const {
+    method,
+    table,
+    select = null,
+    columns = null,
+    idName = null,
+    idValue = null,
+    set = null,
+    returningId = null,
+  } = obj;
+
   let queryString;
 
   switch (method) {
