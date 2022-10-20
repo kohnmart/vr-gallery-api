@@ -57,7 +57,7 @@ galleries
       .json({ result: 'Gallery has been succesfully deleted!' });
   });
 
-// GET ALL USER GALLERIES WITH ID
+// GET ALL USER ACTIVE/INACTIVE GALLERIES WITH ID
 galleries.get('/:id', async (req, res) => {
   const db = await actionDatabase({
     method: 'select',
