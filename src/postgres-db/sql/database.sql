@@ -42,7 +42,7 @@ CREATE TABLE image (
     i_thumb uuid NOT NULL,
     i_name VARCHAR(100),
     CONSTRAINT pk_i_g PRIMARY KEY(i_id, g_id),
-    CONSTRAINT unique_g_frame UNIQUE(g_id, i_frame),
-    CONSTRAINT g_fk FOREIGN KEY (g_id) REFERENCES public.gallery (g_id) ON DELETE CASCADE;
+    CONSTRAINT g_fk FOREIGN KEY (g_id) REFERENCES public.gallery (g_id) ON DELETE CASCADE,
+    CONSTRAINT unique_g_frame UNIQUE(g_id, i_frame);
 
 );
