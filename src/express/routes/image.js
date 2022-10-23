@@ -17,7 +17,7 @@ image.get('/:id', async (req, res) => {
   res.status(db.status).json(db.result);
 });
 
-// ADD IMAGE TO GALLERY --> Upload to S3 Bucket
+// ADD IMAGE TO GALLERY ==> Upload to store
 image.post(
   '/upload',
   upload.fields([{ name: 'image' }, { name: 'thumbnail' }]),
