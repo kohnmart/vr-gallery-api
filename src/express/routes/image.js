@@ -9,12 +9,12 @@ image.use(express.json());
 image.get('/:id', async (req, res) => {
   const db = await actionDatabase({
     method: 'select',
-    select: ['i_id', 'i_thumb', 'i_frame'],
+    select: ['i_id', 'i_frame', 'i_thumb'],
     table: 'image',
     idName: ['g_id'],
     idValue: [req.params.id],
   });
-  res.status(db.status).json(db.result);
+  res.status(db.status).json({ images: db.result });
 });
 
 // ADD IMAGE TO GALLERY ==> Upload to store
