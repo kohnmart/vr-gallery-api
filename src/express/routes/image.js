@@ -9,10 +9,10 @@ image.use(express.json());
 image.get('/:id', async (req, res) => {
   const db = await actionDatabase({
     method: 'select',
-    select: ['i_id', 'i_name'],
-    table: 'getGalleryImages',
-    idName: 'g_id',
-    idValue: req.params.id,
+    select: ['i_id', 'i_thumb', 'i_frame'],
+    table: 'image',
+    idName: ['g_id'],
+    idValue: [req.params.id],
   });
   res.status(db.status).json(db.result);
 });
@@ -27,13 +27,13 @@ image.post(
     const imageName = files['image'][0].originalname;
     const thumbId = files['thumbnail'][0].filename.split('.')[0];
     const g_id = req.body.g_id;
-
+    const i_frame = req.body.i_frame;
     actionDatabase({
       method: 'select',
       select: ['i_id, i_thumb'],
       table: 'image',
       idName: ['g_id', 'i_frame'],
-      idValue: [g_id, 'Frame02'],
+      idValue: [g_id, i_frame],
     })
       .then((selectResult) => {
         if (selectResult.result.length !== 0) {
@@ -45,7 +45,7 @@ image.post(
             columns: ['i_id', 'i_name', 'i_thumb'],
             set: [imageId, imageName, thumbId],
             idName: ['g_id', 'i_frame'],
-            idValue: [g_id, 'Frame01'],
+            idValue: [g_id, i_frame],
           })
             .then((updateResult) => {
               /* UNLINK => EXISTING STORE IMAGES */
@@ -63,7 +63,7 @@ image.post(
             method: 'insert',
             table: 'image',
             columns: ['i_id', 'g_id', 'i_thumb', 'i_name', 'i_frame'],
-            set: [imageId, g_id, thumbId, imageName, 'Frame01'],
+            set: [imageId, g_id, thumbId, imageName, i_frame],
             returningId: 'i_id',
           });
           return res.json(insert);
