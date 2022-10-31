@@ -35,9 +35,9 @@ galleries
     const db = await actionDatabase({
       method: 'update',
       table: 'gallery',
-      columns: 'g_active',
-      idName: ['g_id', 'u_id'],
-      idValue: [req.body.g_id, req.body.u_id],
+      columns: req.body.columns,
+      idName: ['g_id'],
+      idValue: [req.body.g_id],
       set: [req.body.set],
       returningId: 'g_id',
     });
