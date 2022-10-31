@@ -30,12 +30,12 @@ galleries
   })
 
   // UPDATE SPECIFIC GALLERY COLUMN
-  .put(async (req, res) => {
+  .patch(async (req, res) => {
     console.log(req.body);
     const db = await actionDatabase({
       method: 'update',
       table: 'gallery',
-      columns: req.body.columns,
+      columns: [req.body.columns],
       idName: ['g_id'],
       idValue: [req.body.g_id],
       set: [req.body.set],
