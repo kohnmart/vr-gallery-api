@@ -5,7 +5,7 @@ import fs from 'fs';
 const image = express.Router();
 image.use(express.json());
 
-// GET ALL GALLERY IMAGES FROM A USER
+// GET ALL IMAGES FROM SPECIFIC GALLERY
 image.get('/:id', async (req, res) => {
   const db = await actionDatabase({
     method: 'select',
@@ -28,17 +28,20 @@ image.post(
     const thumbId = files['thumbnail'][0].filename.split('.')[0];
     const g_id = req.body.g_id;
     const i_frame = req.body.i_frame;
+
+    /* CHECK IF CURRENT FRAME ALREADY EXISTS */
     actionDatabase({
       method: 'select',
-      select: ['i_id, i_thumb'],
+      select: ['i_id', 'i_thumb'],
       table: 'image',
       idName: ['g_id', 'i_frame'],
       idValue: [g_id, i_frame],
     })
       .then((selectResult) => {
+        console.log(selectResult);
         if (selectResult.result.length !== 0) {
           console.log(selectResult.status);
-          /* REPLACE => IMAGE AND THUMBNAIL IF EXISTS */
+          /* IF EXISTS => REPLACE IMAGE AND THUMBNAIL */
           actionDatabase({
             method: 'update',
             table: 'image',
@@ -46,8 +49,10 @@ image.post(
             set: [imageId, imageName, thumbId],
             idName: ['g_id', 'i_frame'],
             idValue: [g_id, i_frame],
+            returningId: 'i_id',
           })
             .then((updateResult) => {
+              console.log('Update IMAGE');
               /* UNLINK => EXISTING STORE IMAGES */
               fs.unlinkSync(`./store/${selectResult.result[0]['i_id']}.jpg`);
               fs.unlinkSync(`./store/${selectResult.result[0]['i_thumb']}.jpg`);
